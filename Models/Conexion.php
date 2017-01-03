@@ -10,10 +10,10 @@ class Conexion{
 	*/
 	private $con;
 	private $datos = array(
-		"host"	=> "localhost",
-		"user"	=> "root",
-		"pass"	=> "1q2w3e4r5t6y",
-		"db"	=> "empleo"
+		"host"	=> "",
+		"user"	=> "",
+		"pass"	=> "",
+		"db"	=> ""
 	);
 
 	/**
