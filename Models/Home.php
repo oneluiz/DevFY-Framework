@@ -37,7 +37,8 @@
 
 namespace Models;
 
-class Home{
+class Home
+{
 
 	private $con;
 

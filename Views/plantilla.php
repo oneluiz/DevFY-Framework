@@ -26,11 +26,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
-<<<<<<< HEAD
  * @package DevfyFramework
-=======
- * @package Luis PHP Framework
->>>>>>> origin/master
  * @author  Luis Cortes | DevFy
  * @copyright   Copyright (c) 2017, DevFy. (http://www.devfy.net/)
  * @license http://opensource.org/licenses/MIT  MIT License

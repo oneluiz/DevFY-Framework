@@ -26,7 +26,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
-<<<<<<< HEAD
  * @package	DevfyFramework
  * @author	Luis Cortes | DevFy
  * @copyright	Copyright (c) 2017, DevFy. (http://www.devfy.net/)
@@ -35,53 +34,94 @@
  * @since	Version 1.0.0
  * @filesource
  */
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', realpath(dirname(__FILE__)) . DS);
-define("CONTROLADOR_DEFECTO", "home");
-define("ACCION_DEFECTO", "index");
-define('URL', "http://localhost/");
-=======
- * @package Luis PHP Framework
- * @author  Luis Cortes | DevFy
- * @copyright   Copyright (c) 2017, DevFy. (http://www.devfy.net/)
- * @license http://opensource.org/licenses/MIT  MIT License
- * @link    http://www.devfy.net
- * @since   Version 1.0.0
- * @filesource
+
+/**
+ * @since Version 1.0.0
+ * @const Version framework
  */
-
-
 const VERSION = '1.0.0';
+
+/**
+ * @since Version 1.0.0
+ * @const Entorno de desarrollo
+ */
 const ENTORNO_DESARROLLO = false;
+
+/**
+ * @since Version 1.0.0
+ * @const DIRECTORY SEPARATOR
+ */
 const DS = DIRECTORY_SEPARATOR;
-const ROOT = realpath(dirname(__FILE__)) . DS;
+
+/**
+ * @since Version 1.0.0
+ * @const Controlador por defecto
+ */
 const CONTROLADOR_DEFECTO = 'home';
+
+/**
+ * @since Version 1.0.0
+ * @const Metodo por defecto del Controlador
+ */
 const ACCION_DEFECTO = 'index';
-const URL = 'http://localhost/empleo/';
-const IMG = URL . 'estatico/img/';
-const CSS = URL . 'estatico/css/';
-const JS = URL . 'estatico/js/';
+
+/**
+ * @since Version 1.0.0
+ * @const URL base
+ */
+const URL = '';
+
+/**
+ * @since Version 1.0.0
+ * @const IMG Directorio
+ */
+const IMG = URL . '';
+
+/**
+ * @since Version 1.0.0
+ * @const CSS Directorio
+ */
+const CSS = URL . '';
+
+/**
+ * @since Version 1.0.0
+ * @const JS Directorio
+ */
+const JS = URL . '';
+
+/**
+ * @since Version 1.0.0
+ * @const Archivo Log de errores
+ */
 const LOGERROR = '';
+
+/**
+ * @since Version 1.0.0
+ * @const ROOT
+ */
+define ('ROOT', realpath(dirname(__FILE__)) . DS);
 
 /**
  * Prevenir que la mayoria de navegadores no puedan
  * manejar con javascript a través del atributo
  * @HttpOnly
+ * @since Version 1.0.0
  */
 ini_set('session.cookie_httponly', 1);
 
 /**
  * Prevenir que la mayoria de navegadores no puedan
  * Utilizar únicamente cookies para la propagación del identificador de sesión.
+ * @since Version 1.0.0
  */
 ini_set('session.use_only_cookies', 1);
 
 /**
  * Establecer la zona horaria predeterminada UTC.
+ * @since Version 1.0.0
  */
 date_default_timezone_set('America/Costa_Rica');
 
->>>>>>> origin/master
 require_once "Config/Autoload.php";
 \Config\Autoload::run();
 \Config\Enrutador::run(new Config\Request());
