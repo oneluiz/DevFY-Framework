@@ -93,7 +93,7 @@ const JS = URL . '';
  * @since Version 1.0.0
  * @const Archivo Log de errores
  */
-const LOGERROR = '';
+const LOGERROR = 'error.log';
 
 /**
  * @since Version 1.0.0

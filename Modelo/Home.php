@@ -35,48 +35,23 @@
  * @filesource
  */
 
-namespace Models;
+namespace Modelo;
 
-class Conexion{
+class Home
+{
 
-	/**
-	* @desc conexión a la base de datos
-	* @var $_connection
-	* @access private
-	*/
 	private $con;
-	private $datos = array(
-		"host"	=> "",
-		"user"	=> "",
-		"pass"	=> "",
-		"db"	=> ""
-	);
 
-	/**
-	 * [__construct]
-	 */
 	public function __construct(){
-		$this->con = new \mysqli($this->datos['host'], $this->datos['user'], $this->datos['pass'], $this->datos['db']);
-		$this->con->query("SET NAMES 'utf8'");
+		$this->con = new Conexion();
 	}
 
-    /**
-     * [__clone Evita que el objeto se pueda clonar]
-     * @return [type] [message]
-     */
-    public function __clone()
-    {
-        trigger_error('La clonación de este objeto no está permitida', E_USER_ERROR);
-    }
-
-	public function ConsultaSimple($sql){
-		$this->con->query($sql);
+	public function set($atributo, $contenido){
+		$this->$atributo = $contenido;
 	}
 
-	public function ConsultaRetorno($sql){
-		$datos = $this->con->query($sql);
-		return $datos;
+	public function get($atributo){
+		return $this->$atributo;
 	}
 }
 ?>
-

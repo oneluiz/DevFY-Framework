@@ -35,32 +35,46 @@
  * @filesource
  */
 
-namespace Controllers;
+namespace Vista;
 
-use \Models\Home as Home;
-use \Views\Plantilla as Plantilla;
-
-class homeController
+class Plantilla
 {
-    
-    private $home;
-    private $vista;
-    
-    public function __construct()
+    private $vars = array();
+
+    /**
+     * @const Carpeta Vista
+     */
+    const VISTA_PATH = "Vista/";
+
+    /**
+     * @const extension
+     */
+    const EXTENSION_PLANTILLA = ".php";
+
+    public function __get($nombre)
     {
-        $this->home  = new Home();
-        $this->vista = new Plantilla();
+        return $this->vars[$nombre];
     }
-    
-    public function __destruct()
+
+    public function __set($nombre, $valor)
     {
-    	$this->vista->render('modulos/footer');
+        if ($nombre == 'view_template_file') {
+            throw new Exception("No se puede enlazar la variable llamada 'view_template_file'");
+        }
+        $this->vars[$nombre] = $valor;
     }
-    
-    public function index()
+
+    public function render($plantilla)
     {
-    	$this->vista->titulo = "Inicio | DevFy Framework";
-    	$this->vista->render('modulos/head');
+        if (array_key_exists('view_template_file', $this->vars)) {
+            throw new Exception("No se puede enlazar la variable llamada 'view_template_file'");
+        }
+        extract($this->vars, EXTR_OVERWRITE);
+        ob_start();
+        include(self::VISTA_PATH . $plantilla . self::EXTENSION_PLANTILLA);
+        $str = ob_get_contents();
+        ob_end_clean();
+        echo $str;
     }
 }
 ?>

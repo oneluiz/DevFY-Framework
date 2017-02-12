@@ -42,8 +42,8 @@ class Enrutador
     
     public static function run(Request $request)
     {
-        $controlador = $request->getControlador() . "Controller";
-        $ruta        = ROOT . "Controllers" . DS . $controlador . ".php";
+        $controlador = $request->getControlador() . "Controlador";
+        $ruta        = ROOT . "Controlador" . DS . $controlador . ".php";
         $metodo      = $request->getMetodo();
         
         if ($metodo == "index.php") {
@@ -54,7 +54,7 @@ class Enrutador
         
         if (is_readable($ruta)) {
             require_once $ruta;
-            $mostrar     = "Controllers\\" . $controlador;
+            $mostrar     = "Controlador\\" . $controlador;
             $controlador = new $mostrar;
             if (!isset($argumento)) {
                 $datos = call_user_func(array(
@@ -72,11 +72,11 @@ class Enrutador
         /**
          * Cargar vista
          */
-        $ruta = ROOT . "Views" . DS . $request->getControlador() . DS . $request->getMetodo() . ".php";
+        $ruta = ROOT . "Vista" . DS . $request->getControlador() . DS . $request->getMetodo() . ".php";
         if (is_readable($ruta)) {
             require_once $ruta;
         } else {
-            header('Location: '.URL.'error/');
+            header('Location: '.URL);
             exit;
         }
     }

@@ -35,11 +35,10 @@
  * @filesource
  */
 
-namespace Models;
+namespace Modelo;
 
-class Home
+class Core
 {
-
 	private $con;
 
 	public function __construct(){
@@ -52,6 +51,71 @@ class Home
 
 	public function get($atributo){
 		return $this->$atributo;
+	}
+
+	public function ReportarError(){
+		
+		if (ENTORNO_DESARROLLO == true){
+			error_reporting(E_ALL);
+			ini_set('display_errors','On');
+		}else{
+			error_reporting(E_ALL);
+			ini_set('display_errors','Off');
+			ini_set('log_errors', 'On');
+			ini_set('error_log', LOGERROR.'error.log');
+		}
+	}
+
+    public function EnlaceActual()
+    {
+        $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        return $url;
+    }
+
+	public function TiempoPublicacion($fecha)
+	{
+
+		if(empty($fecha)){
+			return "No hay fecha prevista";
+		}
+
+		$periodos	= array("segundo", "minuto", "hora", "d&iacute;a", "semana", "mes", "a&ntilde;o", "d&eacute;cada");
+		$longitudes	= array("60","60","24","7","4.35","12","10");
+		$ahora		= time();
+		$unix_fecha = strtotime( $fecha );
+
+		/**
+		 *  Comprobar la validez de la fecha
+		 */
+		if( empty( $unix_fecha ) ){
+			return "Fecha Desconocida";
+		}
+
+		/**
+		 *  Fecha futura o fecha pasada
+		 */
+		if( $ahora > $unix_fecha ){
+			$diferencia = $ahora - $unix_fecha;
+			$tiempo = "hace";
+		}else{
+			$diferencia = $unix_fecha - $ahora;
+			$tiempo = "desde ahora, hace";
+		}
+
+		for( $j = 0; $diferencia >= $longitudes[$j] && $j < count($longitudes)-1; $j++ ){
+			$diferencia /= $longitudes[$j];
+		}
+		
+		$diferencia = round($diferencia);
+
+		if( $diferencia != 1 ){
+			$periodos[$j].= "s";
+		}
+		return " {$tiempo} $diferencia $periodos[$j]";
+	}
+
+	public function MenuActivado($pagina){
+		if($this->pagina == $pagina) echo "class='active'";
 	}
 }
 ?>
