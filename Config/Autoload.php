@@ -26,23 +26,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+<<<<<<< HEAD
  * @package	DevfyFramework
  * @author	Luis Cortes | DevFy
  * @copyright	Copyright (c) 2017, DevFy. (http://www.devfy.net/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	http://www.devfy.net
  * @since	Version 1.0.0
+=======
+ * @package Luis PHP Framework
+ * @author  Luis Cortes | DevFy
+ * @copyright   Copyright (c) 2017, DevFy. (http://www.devfy.net/)
+ * @license http://opensource.org/licenses/MIT  MIT License
+ * @link    http://www.devfy.net
+ * @since   Version 1.0.0
+>>>>>>> origin/master
  * @filesource
  */
 
 namespace Config;
 
-class Autoload{
-	public static function run(){
-		spl_autoload_register(function($class){
-			$ruta = str_replace("\\", "/", $class) . ".php";
-			include_once $ruta;
-		});
-	}
+class Autoload
+{
+    public static function run()
+    {
+        spl_autoload_register(function($class)
+        {
+            $ruta = str_replace("\\", "/", $class) . ".php";
+            include_once $ruta;
+            
+        });
+    }
 }
 ?>

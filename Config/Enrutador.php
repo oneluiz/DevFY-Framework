@@ -26,51 +26,68 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+<<<<<<< HEAD
  * @package	DevfyFramework
  * @author	Luis Cortes | DevFy
  * @copyright	Copyright (c) 2017, DevFy. (http://www.devfy.net/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	http://www.devfy.net
  * @since	Version 1.0.0
+=======
+ * @package Luis PHP Framework
+ * @author  Luis Cortes | DevFy
+ * @copyright   Copyright (c) 2017, DevFy. (http://www.devfy.net/)
+ * @license http://opensource.org/licenses/MIT  MIT License
+ * @link    http://www.devfy.net
+ * @since   Version 1.0.0
+>>>>>>> origin/master
  * @filesource
  */
 
 namespace Config;
 
-class Enrutador{
+class Enrutador
+{
+    
+    public static function run(Request $request)
+    {
+        $controlador = $request->getControlador() . "Controller";
+        $ruta        = ROOT . "Controllers" . DS . $controlador . ".php";
+        $metodo      = $request->getMetodo();
+        
+        if ($metodo == "index.php") {
+            $metodo = "index";
+        }
+        
+        $argumento = $request->getArgumento();
+        
+        if (is_readable($ruta)) {
+            require_once $ruta;
+            $mostrar     = "Controllers\\" . $controlador;
+            $controlador = new $mostrar;
+            if (!isset($argumento)) {
+                $datos = call_user_func(array(
+                    $controlador,
+                    $metodo
+                ));
+            } else {
+                $datos = call_user_func_array(array(
+                    $controlador,
+                    $metodo
+                ), $argumento);
+            }
+        }
 
-	public static function run(Request $request){
-		$controlador = $request->getControlador(). "Controller";
-		$ruta = ROOT . "Controllers". DS . $controlador. ".php";
-		$metodo = $request->getMetodo();
-
-		if($metodo == "index.php"){
-			$metodo = "index";
-		}
-
-		$argumento = $request->getArgumento();
-
-		if(is_readable($ruta)){
-			require_once $ruta;
-			$mostrar = "Controllers\\". $controlador;
-			$controlador = new $mostrar;
-			if(!isset($argumento)){
-				$datos = call_user_func(array($controlador, $metodo));
-			}else{
-				$datos = call_user_func_array(array($controlador, $metodo), $argumento);
-			}
-		}
-
-		/**
-		 * Cargar vista
-		 */
-		$ruta = ROOT . "Views" . DS . $request->getControlador() . DS . $request->getMetodo() . ".php";
-		if(is_readable($ruta)){
-			require_once $ruta;
-		}else{
-			echo "<div class='centrado'><p class='text-center'>ERROR<br/>404</p></div>";
-		}
-	}
+        /**
+         * Cargar vista
+         */
+        $ruta = ROOT . "Views" . DS . $request->getControlador() . DS . $request->getMetodo() . ".php";
+        if (is_readable($ruta)) {
+            require_once $ruta;
+        } else {
+            header('Location: '.URL.'error/');
+            exit;
+        }
+    }
 }
-
-
+?>

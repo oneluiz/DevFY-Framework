@@ -26,7 +26,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+<<<<<<< HEAD
  * @package DevfyFramework
+=======
+ * @package Luis PHP Framework
+>>>>>>> origin/master
  * @author  Luis Cortes | DevFy
  * @copyright   Copyright (c) 2017, DevFy. (http://www.devfy.net/)
  * @license http://opensource.org/licenses/MIT  MIT License
@@ -42,14 +46,14 @@ class Plantilla
     private $vars = array();
 
     /**
-     * @var
+     * @const Carpeta Vista
      */
-    const VIEWS_PATH = "Views/";
+    const VISTA_PATH = "Views/";
 
     /**
-     * @var
+     * @const extension
      */
-    const EXTENSION_TEMPLATES = ".php";
+    const EXTENSION_PLANTILLA = ".php";
 
     public function __get($nombre)
     {
@@ -71,10 +75,10 @@ class Plantilla
         }
         extract($this->vars);
         ob_start();
-        include(self::VIEWS_PATH . $plantilla . self::EXTENSION_TEMPLATES);
+        include(self::VISTA_PATH . $plantilla . self::EXTENSION_PLANTILLA);
         $str = ob_get_contents();
         ob_end_clean();
         echo $str;
     }
 }
-
+?>

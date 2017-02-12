@@ -26,56 +26,70 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+<<<<<<< HEAD
  * @package	DevfyFramework
  * @author	Luis Cortes | DevFy
  * @copyright	Copyright (c) 2017, DevFy. (http://www.devfy.net/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	http://www.devfy.net
  * @since	Version 1.0.0
+=======
+ * @package Luis PHP Framework
+ * @author  Luis Cortes | DevFy
+ * @copyright   Copyright (c) 2017, DevFy. (http://www.devfy.net/)
+ * @license http://opensource.org/licenses/MIT  MIT License
+ * @link    http://www.devfy.net
+ * @since   Version 1.0.0
+>>>>>>> origin/master
  * @filesource
  */
 
 namespace Config;
 
-class Request{
-
-	private $controlador;
-	private $metodo;
-	private $argumento;
-
-	public function __construct(){
-		if(isset($_GET['url'])){
-			$ruta = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_URL);
-			$ruta = explode("/", $ruta);
-			$ruta = array_filter($ruta);
-
-			if($ruta[0] == "index.php"){
-				$this->controlador = CONTROLADOR_DEFECTO;
-			}else{
-				$this->controlador	= strtolower(array_shift($ruta));
-			}
-			$this->metodo 		= strtolower(array_shift($ruta));
-			
-			if(!$this->metodo){
-				$this->metodo	= "index";
-			}
-			$this->argumento	= $ruta;
-		}else{
-			$this->controlador = CONTROLADOR_DEFECTO;
-			$this->metodo = ACCION_DEFECTO;
-		}
-	}
-
-	public function getControlador(){
-		return $this->controlador;
-	}
-
-	public function getMetodo(){
-		return $this->metodo;
-	}
-
-	public function getArgumento(){
-		return $this->argumento;
-	}
+class Request
+{
+    
+    private $controlador;
+    private $metodo;
+    private $argumento;
+    
+    public function __construct()
+    {
+        if (isset($_GET['url'])) {
+            $ruta = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_URL);
+            $ruta = explode("/", $ruta);
+            $ruta = array_filter($ruta);
+            
+            if ($ruta[0] == "index.php") {
+                $this->controlador = CONTROLADOR_DEFECTO;
+            } else {
+                $this->controlador = strtolower(array_shift($ruta));
+            }
+            $this->metodo = strtolower(array_shift($ruta));
+            
+            if (!$this->metodo) {
+                $this->metodo = "index";
+            }
+            $this->argumento = $ruta;
+        } else {
+            $this->controlador = CONTROLADOR_DEFECTO;
+            $this->metodo      = ACCION_DEFECTO;
+        }
+    }
+    
+    public function getControlador()
+    {
+        return $this->controlador;
+    }
+    
+    public function getMetodo()
+    {
+        return $this->metodo;
+    }
+    
+    public function getArgumento()
+    {
+        return $this->argumento;
+    }
 }
 ?>
